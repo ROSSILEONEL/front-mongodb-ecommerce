@@ -3,24 +3,31 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import './index.css'
 import App from './App.tsx'
-import { EjemploComponent } from './components/EjemploComponent.tsx'
+import { Login } from './components/Login.tsx'
 import { NavBar } from './components/NavBar.tsx'
 import { Productos } from './components/Productos.tsx'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { Admin } from './components/Admin.tsx'
 
-const queryClient = new QueryClient()
+import { store } from './app/store.ts'
+import { Provider } from 'react-redux'
+import { ItemDetail } from './components/ItemDetail.tsx'
+
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+    <Provider store={store}>
     <Router  >
-      <QueryClientProvider client={queryClient}>
+  
       <NavBar />
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/ejemplo" element={<EjemploComponent />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/products" element={<Productos />} />
+        <Route path="/products/:id" element={<ItemDetail />} />
+        <Route path='/admin' element={<Admin />} />
       </Routes>
-      </QueryClientProvider >
+
     </Router>
+    </Provider>
   </StrictMode>,
     )

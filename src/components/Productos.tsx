@@ -1,23 +1,24 @@
-
-import { useQuery } from "@tanstack/react-query";
+import {useGetAllProducts} from "../service/productsService";
 import { Product } from "./Product";
 
-  interface Product { _id: string; name: string; description: string; price: number; image: string; stock: number; createdAt: string; updatedAt: string; }
-   const fetchProducts = async () => { 
-    const response = await fetch('https://back-mongodb-ecommerce.onrender.com/products'); 
-   const data = await response.json();
-    if (!response.ok) {
-       throw new Error(data.message);
-       } return data; 
-      }; 
+
+  interface Product { 
+    _id: string; 
+    name: string; 
+    description: string;
+     price: number; 
+     image: string;
+      stock: number;
+       createdAt: string;
+        updatedAt: string;
+       }
+
+
+  
 
     export const Productos = () => { 
-      const { isLoading, data, error } = useQuery(
-         {
-          queryKey: ['todos'],
-          queryFn: fetchProducts,
-        }
-      );
+     
+    const { data, error, isLoading } = useGetAllProducts();
 
       if (isLoading) return <div>Loading...</div>; 
       
