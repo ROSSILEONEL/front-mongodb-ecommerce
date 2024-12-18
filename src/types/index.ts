@@ -15,4 +15,10 @@ cart: Array<ProductProp>,
 total: number
 }
 
+export interface RootState{
+  auth:{
+    token: string | null,
+    user: object | null
+  }
+}
 

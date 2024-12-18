@@ -1,18 +1,22 @@
-import { useAdminQuery } from "../service/loginService.ts"
+
+import {  useSelector } from "react-redux";
+import { selectAuth } from "../app/selectors.ts";
+
 export const Admin = () => {
 
-    const { data, error, isLoading } = useAdminQuery('667f1b585ac9245940317c29')
+
+  const authData = useSelector(selectAuth);
+
 
     const handleClick = () => {
-        console.log('DATA',data);
-        console.log('ERROR',error);
-        console.log('ISLOADING',isLoading);
+       
         
     }
   return (
-    <div>Admin
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem quaerat eaque et laudantium esse sapiente harum ab rerum minima in, velit quisquam ad, dolore deleniti. Ab reiciendis odio saepe totam?</p>
-        <button onClick={handleClick}>Admin</button>
+    <div>
+<h2>BIENVENIDO {authData.user}</h2>
+
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleClick}>Admin</button>
     </div>
   )
 }

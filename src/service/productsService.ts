@@ -5,12 +5,7 @@ export const productsApi = createApi({
     reducerPath: 'productsApi',
     baseQuery: fetchBaseQuery({
         baseUrl: 'https://back-mongodb-ecommerce.onrender.com/products',
-        prepareHeaders: (headers) => {
-             const token = localStorage.getItem('token'); 
-             if (token) { 
-                headers.set('authorization', `Bearer ${token}`);
-             }
-              return headers; },
+       
     }),
     tagTypes: ['Product'],
     endpoints: (builder) => ({
@@ -21,7 +16,8 @@ export const productsApi = createApi({
         getProductById: builder.query({
             query: (id) => `/${id}`,
             providesTags: ['Product']
-        })
+        }),
+         
     })
 
 })

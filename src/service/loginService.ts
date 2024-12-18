@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { setToken } from "../features/authSlice";
 
 export const loginApi = createApi({
     reducerPath: 'loginApi',
@@ -21,7 +22,22 @@ export const loginApi = createApi({
                 method: 'POST', 
                 body: item,
             }),
-            invalidatesTags: ['Login'],
+            async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+                try{
+                    const response = await queryFulfilled
+                    dispatch(setToken(response.data))
+                  
+        
+                  
+                    
+                }catch(error){
+                    console.log('error',error);
+                    
+                }
+                    
+
+            }
+          
         }),
         logout: builder.mutation({
             query: () => ({
@@ -35,7 +51,9 @@ export const loginApi = createApi({
                 url: '/auth/admin',
                 method: 'GET',
             }),
-        })
+        }),
+      
+
 
 
     }),   

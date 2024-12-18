@@ -3,13 +3,16 @@ import { productsApi } from '../service/productsService.ts'
 import { cartApi } from '../service/cartService.ts'
 import { loginApi } from '../service/loginService.ts'
 import { setupListeners } from '@reduxjs/toolkit/query'
+import authSlice from '../features/authSlice.ts'
+
 
 export const store = configureStore({
   reducer: {
 [productsApi.reducerPath]: productsApi.reducer
 ,
 [cartApi.reducerPath]: cartApi.reducer,
-[loginApi.reducerPath]: loginApi.reducer
+[loginApi.reducerPath]: loginApi.reducer,
+auth: authSlice
   },
 
   middleware: (getDefaultMiddleware) =>
