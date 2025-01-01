@@ -1,22 +1,26 @@
 
 import {  useSelector } from "react-redux";
 import { selectAuth } from "../app/selectors.ts";
+import { useNavigate } from "react-router-dom";
+import { AdminDashBoard } from "./AdminDashBoard.tsx";
 
 export const Admin = () => {
 
-
+const navigate = useNavigate();
   const authData = useSelector(selectAuth);
 
 
-    const handleClick = () => {
-       
-        
-    }
+    
+    if (authData.user === null) {
+        return (
+          navigate("/login")
+        )
+      }else 
   return (
-    <div>
-<h2>BIENVENIDO {authData.user}</h2>
+    <>
+      <AdminDashBoard />
+    
+    </>
 
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleClick}>Admin</button>
-    </div>
   )
 }

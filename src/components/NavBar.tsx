@@ -1,18 +1,43 @@
 import { Link } from "react-router-dom";
 import cart from '../assets/cart.svg'
+import { useSelector } from "react-redux";
+import {selectAuth} from "../app/selectors.ts";
+import {useEffect, useState} from "react";
 
-import { useSelector} from "react-redux";
-import { RootState } from "../types";
+
 export const NavBar = () => {
 
+const userAuth = useSelector(selectAuth);
+const [isAdmin, setIsAdmin] = useState(false);
+console.log('USER AUTH DEL NAVBAR',userAuth.user);
+const rolesA:[] = userAuth.user?.roles ;
+console.log('ROLES',rolesA);
 
-// console.log('CART',data);
-// console.log('ERROR',error);
-  // const token = useSelector((state: RootState)=> state.auth.token);
-  // const userAuth = useSelector((state:  RootState)=> state.auth.user);
 
-// console.log('token',token);
-// console.log('userAuth',userAuth);
+useEffect(() => {
+
+  if (userAuth.user !== null) {
+  rolesA.map((role) => {
+   console.log('ROLE',role);
+   if (role.name === 'admin'){
+     setIsAdmin(true);
+    }
+
+     
+      
+    
+  });
+ 
+}
+
+}
+, [userAuth.user]);
+
+
+
+
+  
+
 
 
   return (
@@ -38,9 +63,9 @@ export const NavBar = () => {
             </Link>
           </li>
           <li>
-            <Link to="/admin" className="text-gray-300 hover:text-white">
+      {isAdmin && <Link to="/admin" className="text-gray-300 hover:text-white">
               Admin
-            </Link>
+            </Link>}
           </li>
         </ul>
         <div className="cart">

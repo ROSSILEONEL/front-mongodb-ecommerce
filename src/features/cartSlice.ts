@@ -6,7 +6,7 @@ import { PayloadAction } from "@reduxjs/toolkit";
 
 const initialState : CartProp =  { 
      user: "string",
-     cart: [],
+     cart: Array<ProductProp>(),
      total: 0
  }
 
@@ -15,14 +15,20 @@ const initialState : CartProp =  {
           name:'cart',
           initialState,
 reducers: {
-     addProduct: (state, action: PayloadAction<Array<ProductProp>>) => {
-          state.cart = state.cart.concat(action.payload)
+     createCart: (state, action) => {
+          state.user = action.payload.user;
+          state.cart = action.payload.cart;
+          state.total = action.payload.total;
      },
-     getCart: (state) => {
-
-
-          return state
-}
+     addItemToCart: (state, action: PayloadAction<ProductProp>) => {
+          state.cart.push(action.payload);
+          state.total = state.total + action.payload.price;
+     }
+    
 }
 
      })
+
+
+
+     
