@@ -17,6 +17,14 @@ export const productsApi = createApi({
             query: (id) => `/${id}`,
             providesTags: ['Product']
         }),
+        addProduct: builder.mutation({
+            query: (product) => ({
+                url: '/add',
+                method: 'POST',
+                body: product
+            }),
+            invalidatesTags: ['Product']
+        }),
          
     })
 
@@ -24,3 +32,4 @@ export const productsApi = createApi({
 
 export const useGetAllProducts = productsApi.useGetAllProductsQuery
 export const useGetProductById = productsApi.useGetProductByIdQuery
+export const useAddProduct = productsApi.useAddProductMutation

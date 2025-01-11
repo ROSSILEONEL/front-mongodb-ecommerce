@@ -46,6 +46,7 @@ export const loginApi = createApi({
             }),
             invalidatesTags: ['Login'],
         }),
+        
         admin: builder.query({
             query: () => ({
                 url: '/auth/admin',
