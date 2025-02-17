@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import {useLoginMutation} from '../service/loginService.ts'
-import { useNavigate, useNavigation } from "react-router-dom";
+import { useNavigate, useNavigation, Link } from "react-router-dom";
 
 
 
@@ -91,7 +91,11 @@ useEffect(() => {
           >
             Login
           </button>
+          
         </form>
+        <Link to="/SignUp" className="text-gray-300 hover:text-white">
+              Registrate
+            </Link>
       </div>
     </div>
   );

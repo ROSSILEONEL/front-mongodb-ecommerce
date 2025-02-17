@@ -13,6 +13,7 @@ import { Provider } from 'react-redux'
 import { ItemDetail } from './components/ItemDetail.tsx'
 import { AdminDashBoard } from './components/AdminDashBoard.tsx'
 import { AddProduct } from './components/AddProduct.tsx'
+import { SignUp } from './components/SignUp.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -29,6 +30,8 @@ createRoot(document.getElementById('root')!).render(
         <Route path='/admin/addUser' element={<AddAdmin/>} />
         <Route path='/admin/addProduct' element={<AddProduct/>} />
         </Route>
+        <Route path='/SignUp' element={<SignUp/>} />
+        <Route path="*" element={<h1>Not Found</h1>} />
       </Routes>
 
     </Router>
