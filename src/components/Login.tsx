@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {useLoginMutation} from '../service/loginService.ts'
 import { useNavigate, useNavigation, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 
 
@@ -13,6 +14,12 @@ export const Login: React.FC = () => {
     email: "",
     password: "",
   })
+
+  const userDataState = useSelector((state) => state.auth.user);
+  console.log('userDataState',userDataState);
+  
+  
+  
   const navigate= useNavigate();
 const [login, { data, isLoading, isError, isSuccess }] = useLoginMutation();
 console.log('success  ',isSuccess);
@@ -20,6 +27,11 @@ console.log('data  ',data);
 console.log('error  ',isError);
 
 useEffect(() => {
+
+if (userDataState) {
+  return navigate('/admin');
+}
+
   if (isSuccess) {
     console.log('success  ',isSuccess);
     console.log('data  ',data);
