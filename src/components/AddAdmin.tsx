@@ -20,7 +20,7 @@ export const AddAdmin: React.FC = () => {
     const newName = name.concat(" ",lastName);
    
     const newUser={
-      "name": newName,
+      "name": newName.toUpperCase(),
       "email": email,
       "password": password,
       "roles":["admin"]

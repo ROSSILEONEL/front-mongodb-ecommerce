@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
-import cart from '../assets/cart.svg'
 import { useSelector } from "react-redux";
 import {selectAuth} from "../app/selectors.ts";
 import {useEffect, useState} from "react";
-
+import Cart from "./Cart.tsx";
 
 export const NavBar = () => {
 
@@ -59,7 +58,7 @@ useEffect(() => {
           </li>
           <li>
             <Link to="/login" className="text-gray-300 hover:text-white">
-              Login
+              {userAuth.user ? 'Mi cuenta' : 'Login'}
             </Link>
           </li>
           <li>
@@ -67,12 +66,12 @@ useEffect(() => {
               Admin
             </Link>}
           </li>
-        </ul>
-        <div className="cart">
-<img src={cart} className="w-7 h-7 ml-4" alt="" />
-        <span>0</span>
-        </div>
+       <div className="flex justify-end h-full w-15">
 
+<Cart />
+       </div>
+        </ul>
+       
        </div>
       </div>
     </nav>
