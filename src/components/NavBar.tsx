@@ -66,10 +66,14 @@ useEffect(() => {
               Admin
             </Link>}
           </li>
-       <div className="flex justify-end h-full w-15">
+      <li>
 
+<Link to='/cart' className="text-gray-300 hover:text-white">
+       <div className="flex justify-end h-full w-15">
 <Cart />
        </div>
+</Link>
+      </li>
         </ul>
        
        </div>

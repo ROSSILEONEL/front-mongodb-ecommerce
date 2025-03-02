@@ -1,11 +1,16 @@
 import cart from '../assets/cart.svg'
-
+import { useLocation } from 'react-router-dom';
+import {useAddItemToCartMutation} from "../service/cartService.ts";
 
 
 import { useState } from "react";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState<number>(3); // Estado del carrito
+ const [addItemToCart,{isLoading,isError,isSuccess}] = useAddItemToCartMutation(); // Mutation para añadir un item al carrito
+
+  const location = useLocation();
+console.log('location',location);
 
   return (
     <div className="relative">
