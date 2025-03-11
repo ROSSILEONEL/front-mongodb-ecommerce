@@ -1,30 +1,20 @@
-import cart from '../assets/cart.svg'
-import { useLocation } from 'react-router-dom';
-import {useAddItemToCartMutation} from "../service/cartService.ts";
-
-
-import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { useGetCartItemsQuery } from "../service/cartService.ts";
+// import { useEffect, useState } from "react";
+// import {
+//   useGetCartItemsQuery,
+//   useRemoveItemFromCartMutation,
+//   useUpdateCartItemMutation
+// } from "../service/cartService.ts";
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState<number>(3); // Estado del carrito
- const [addItemToCart,{isLoading,isError,isSuccess}] = useAddItemToCartMutation(); // Mutation para añadir un item al carrito
+  const { id } = useParams();
 
-  const location = useLocation();
-console.log('location',location);
+  const { data, error, isLoading } = useGetCartItemsQuery(id);
 
-  return (
-    <div className="relative">
-      <button className="relative p-0  text-white rounded-full hover:scale-110">
-<img src={cart} className="w-7 h-7 ml-4" alt="" />
-        
-        {cartItems > 0 && (
-          <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
-            {cartItems}
-          </span>
-        )}
-      </button>
-    </div>
-  );
-};
-
+  console.log('cartItems',data);
+  console.log('cartItems',typeof(data));
+  console.log('cartItems',data?.items);
+  
+}
 export default Cart;

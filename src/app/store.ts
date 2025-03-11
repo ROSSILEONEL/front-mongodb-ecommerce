@@ -12,6 +12,7 @@ export const store = configureStore({
 [productsApi.reducerPath]: productsApi.reducer
 ,
 [cartApi.reducerPath]: cartApi.reducer,
+
 [loginApi.reducerPath]: loginApi.reducer,
 auth: authSlice,
 [userApi.reducerPath]: userApi.reducer

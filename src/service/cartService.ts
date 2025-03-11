@@ -1,15 +1,23 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
+
+
 export const cartApi = createApi({
     reducerPath: 'cartApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'https://back-mongodb-ecommerce.onrender.com/cart',
-        prepareHeaders: (headers) => {
-             const token = localStorage.getItem('token'); 
-             if (token) { 
+        // baseUrl: 'https://back-mongodb-ecommerce.onrender.com/cart',
+        baseUrl: 'http://localhost:8080/cart',
+        credentials: 'include',
+        prepareHeaders: (headers, { getState }) => {
+            const token = getState().auth.token;
+            console.log('token del prepareHeader',token);
+            
+            if (token) {
                 headers.set('authorization', `Bearer ${token}`);
-             }
-              return headers; },
+            }
+            return headers;
+        }
+       
     }),
     tagTypes: ['Cart'],
     endpoints: (builder) => ({
@@ -32,11 +40,21 @@ export const cartApi = createApi({
             }),
             invalidatesTags: ['Cart'],
         }),
+        updateCartItem: builder.mutation({
+      query: ({ id, quantity }) => ({
+        url: `/${id}`,
+        method: "PUT",
+        body: { quantity },
+      }),
+        invalidatesTags: ["Cart"],
     }),
+
+}),
 });
 
 export const {
     useAddItemToCartMutation,
     useGetCartItemsQuery,
-    useRemoveItemFromCartMutation
+    useRemoveItemFromCartMutation,
+    useUpdateCartItemMutation,
 } = cartApi;

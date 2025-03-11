@@ -26,7 +26,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/login" element={<Login />} />
         <Route path="/products" element={<Productos />} />
         <Route path="/products/:id" element={<ItemDetail />} />
-        <Route path='/cart' element={<Cart />} />
+        <Route path='/cart/:id' element={<Cart />} />
         <Route path='/admin' element={<AdminDashBoard />} >
         <Route path='/admin/addUser' element={<AddAdmin/>} />
         <Route path='/admin/addProduct' element={<AddProduct/>} />

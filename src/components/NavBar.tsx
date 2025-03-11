@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {selectAuth} from "../app/selectors.ts";
 import {useEffect, useState} from "react";
-import Cart from "./Cart.tsx";
+import cart from '../assets/cart.svg';
+import {useGetCartItemsQuery} from "../service/cartService.ts";
 
 export const NavBar = () => {
 
@@ -11,6 +12,8 @@ const [isAdmin, setIsAdmin] = useState(false);
 console.log('USER AUTH DEL NAVBAR',userAuth.user);
 const rolesA:[] = userAuth.user?.roles ;
 console.log('ROLES',rolesA);
+const { data: cartItems } = useGetCartItemsQuery(userAuth.user?.id);
+console.log('cartItems',cartItems);
 
 
 useEffect(() => {
@@ -68,10 +71,21 @@ useEffect(() => {
           </li>
       <li>
 
-<Link to='/cart' className="text-gray-300 hover:text-white">
+<Link to={`/cart/${userAuth.user?._id}`} className="text-gray-300 hover:text-white">
        <div className="flex justify-end h-full w-15">
-<Cart />
-       </div>
+    
+    
+    <div className="relative">
+      <button className="relative p-0  text-white rounded-full hover:scale-110">
+<img src={cart} className="w-7 h-7 ml-4" alt="" />
+        
+        {cartItems?.items.length > 0 && (
+          <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+            {cartItems.items.length} 
+          </span>
+        )}
+      </button>
+    </div>       </div>
 </Link>
       </li>
         </ul>
