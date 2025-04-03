@@ -16,5 +16,22 @@ const Cart = () => {
   console.log('cartItems',typeof(data));
   console.log('cartItems',data?.items);
   
+  return (
+    // <div>
+    //   <h1>Cart</h1>
+    //   {isLoading && <p>Loading...</p>}
+    //   {error && <p>Error: {error}</p>}
+    //   {data && (
+    //     <ul>
+    //       {data.items.map((item) => (
+    //         <li key={item._id}>
+    //           {item.name} - {item.quantity}
+    //         </li>
+    //       ))}
+    //     </ul>
+    //   )}
+    // </div>
+    <h1>Cart</h1>
+  );
 }
 export default Cart;
