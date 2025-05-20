@@ -17,6 +17,9 @@ export const AdminDashBoard: React.FC = () => {
         <Link to="/admin/addProduct" className="text-white hover:text-gray-200">
           Add Product
         </Link>
+        <Link to="/admin/manageProduct" className="text-white hover:text-gray-200">
+          Manage Product
+        </Link>
       </nav>
       <div className="w-3/4 p-4">
         <Outlet />

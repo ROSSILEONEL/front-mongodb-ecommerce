@@ -26,7 +26,7 @@ import { Product } from "./Product";
       
       return ( 
       <>
-       <div className="p-4 gap-2 w-full grid justfy-evenly bg-gray-200 grid-cols-[repeat(auto-fit,minmax(300px,1fr))]" >
+       <div className="p-4 gap-2 w-full grid justfy-evenly bg-gray-900 grid-cols-[repeat(auto-fit,minmax(300px,1fr))]" >
 
         {data.map((product: Product) => ( 
           <Product key={product._id} product={product} />

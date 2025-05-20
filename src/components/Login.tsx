@@ -29,6 +29,7 @@ console.log('error  ',isError);
 useEffect(() => {
 
 if (userDataState) {
+  localStorage.setItem('token', userDataState.token);
   return navigate('/admin');
 }
 
